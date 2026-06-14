@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CyberShield | Next-Gen Fraud Intelligence</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+    <aside class="sidebar">
+        <div class="logo-area">
+            <h2><i class="fas fa-shield-haltered"></i><span>CYBER SHIELD</span></h2>
+            <p>// FRAUD INTELLIGENCE //</p>
+        </div>
+        <div class="nav-menu">
+            <div class="nav-item active"><i class="fas fa-chart-line"></i><span>ANALYTICS</span></div>
+            <div class="nav-item"><i class="fas fa-credit-card"></i><span>TX MONITOR</span></div>
+            <div class="nav-item"><i class="fas fa-robot"></i><span>AI CORE</span></div>
+            <div class="nav-item"><i class="fas fa-skull"></i><span>THREATS</span></div>
+        </div>
+        <div class="sidebar-footer"><i class="fas fa-lock"></i> ENCRYPTED // v3.1.7</div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-navbar">
+            <div class="page-title">
+                <h1>⟁ NEURAL FRAUD ENGINE</h1>
+                <p>// real-time threat analysis // quantum ready //</p>
+            </div>
+            <div class="navbar-actions">
+                <button class="dark-btn-nav" onclick="toggleTheme()"><i class="fas fa-moon"></i> DARK MODE</button>
+                <div class="badge-new"><i class="fas fa-bolt"></i> ACTIVE</div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card"><h3>MODEL ARCH</h3><p>RANDOM FOREST</p></div>
+            <div class="stat-card"><h3>STATUS</h3><p class="online">⟁ ONLINE</p></div>
+            <div class="stat-card"><h3>VERSION</h3><p>3.1.7</p></div>
+            <div class="stat-card"><h3>FEATURES</h3><p>30 DIM</p></div>
+        </div>
+
+        <div class="card"><h2><i class="fas fa-microchip"></i> NEURAL CORE INFO</h2><div id="modelInfo">Loading model information...</div></div>
+        <div class="card"><h2><i class="fas fa-brain"></i> PREDICTION TERMINAL</h2>
+            <div class="buttons">
+                <button class="normal-btn" onclick="testNormal()"><i class="fas fa-check-circle"></i> NORMAL SAMPLE</button>
+                <button class="fraud-btn" onclick="testFraud()"><i class="fas fa-skull-crosswalk"></i> FRAUD SAMPLE</button>
+            </div>
+        </div>
+        <div class="card"><h2><i class="fas fa-upload"></i> BULK SCAN</h2>
+            <input type="file" id="csvFile" accept=".csv">
+            <button class="upload-btn" onclick="uploadCSV()"><i class="fas fa-radar"></i> INITIATE SCAN</button>
+        </div>
+        <div class="card"><h2><i class="fas fa-chart-pie"></i> THREAT METRICS</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>TOTAL PRED</h3><p id="totalPredictions">0</p></div>
+                <div class="stat-card"><h3>FRAUD DETECT</h3><p id="fraudCount">0</p></div>
+                <div class="stat-card"><h3>CLEAR TX</h3><p id="normalCount">0</p></div>
+                <div class="stat-card"><h3>ACCURACY</h3><p>99.9%</p></div>
+                <div class="stat-card"><h3>RISK INDEX</h3><p id="riskLevel">🟢 LOW</p></div>
+            </div>
+        </div>
+        <div class="card"><h2><i class="fas fa-clock"></i> LAST SCAN</h2><p id="analysisTime">No Analysis Yet</p></div>
+        <div class="card"><h2><i class="fas fa-exclamation-triangle"></i> CRITICAL ALERTS</h2><div id="alerts">No Alerts</div></div>
+        <div class="card"><h2><i class="fas fa-history"></i> SCAN HISTORY</h2>
+            <table id="historyTable"><thead><tr><th>TIMESTAMP</th><th>TOTAL</th><th>FRAUD</th><th>FRAUD %</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div class="card"><h2><i class="fas fa-chart-pie"></i> THREAT VISUALIZATION</h2>
+            <div style="max-width:500px;margin:auto;"><canvas id="fraudChart"></canvas></div>
+            <div id="riskLevelChart" style="text-align:center; font-size:22px; font-weight:bold; margin-top:20px;"></div>
+            <div id="analysisTimeChart" style="text-align:center; color:gray; margin-top:10px;"></div>
+        </div>
+        <div class="card"><h2><i class="fas fa-chart-line"></i> MODEL BENCHMARK</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>ACCURACY</h3><p>99.9%</p></div>
+                <div class="stat-card"><h3>PRECISION</h3><p>94%</p></div>
+                <div class="stat-card"><h3>RECALL</h3><p>89%</p></div>
+                <div class="stat-card"><h3>F1 SCORE</h3><p>91%</p></div>
+            </div>
+        </div>
+        <div class="result-card"><h2><i class="fas fa-terminal"></i> PREDICTION OUTPUT</h2><div id="result"><div class="placeholder">// AWAITING INPUT //</div></div></div>
+        <div class="card"><h2><i class="fas fa-database"></i> PREDICTION LOG</h2>
+            <table><thead><tr><th>PREDICTION</th><th>PROBABILITY</th><th>RISK</th><th>TIMESTAMP</th></tr></thead><tbody id="historyBody"></tbody></table>
+        </div>
+        <footer><p>DEVELOPED BY SAI CHETAN // FASTAPI • RANDOM FOREST • QUANTUM READY</p></footer>
+    </main>
+</div>
+
+<script>
+    let historyData = [], fraudCount = 0, normalCount = 0, fraudChart = null;
+
+    function toggleTheme() { document.body.classList.toggle("dark-mode"); }
+    
+    async function loadModelInfo() {
+        try {
+            const response = await fetch('/model-info');
+            const data = await response.json();
+            document.getElementById("modelInfo").innerHTML = `<p>⟁ MODEL: ${data.model_name}</p><p>⟁ PROBLEM: ${data.problem_type}</p><p>⟁ DATASET: ${data.dataset}</p><p>⟁ FEATURES: ${data.features}</p>`;
+        } catch(e) { document.getElementById("modelInfo").innerHTML = "⟁ OFFLINE MODE"; }
+    }
+    loadModelInfo();
+
+    function updateCounters(data) {
+        if(data.prediction === 1) fraudCount++; else normalCount++;
+        document.getElementById("fraudCount").innerText = fraudCount;
+        document.getElementById("normalCount").innerText = normalCount;
+        document.getElementById("totalPredictions").innerText = fraudCount + normalCount;
+        if(fraudChart && (fraudCount+normalCount)>0){ fraudChart.data.datasets[0].data = [normalCount, fraudCount]; fraudChart.update(); }
+    }
+
+    function updateHistory(data) {
+        historyData.push(data);
+        let html = "";
+        historyData.forEach(item => { html += `<tr><td style="color:${item.prediction === 1 ? '#ff00ff' : '#00ff41'}">${item.prediction_label}</td><td>${item.fraud_probability_percent}%</td><td style="color:${item.risk_level === 'HIGH' ? '#ff00ff' : '#00f0ff'}">${item.risk_level}</td><td>${item.timestamp}</td>`; });
+        document.getElementById("historyBody").innerHTML = html;
+    }
+
+    function updateChart(fraudC, normalC) {
+        const ctx = document.getElementById("fraudChart");
+        if(fraudChart) fraudChart.destroy();
+        fraudChart = new Chart(ctx, { type:"pie", data:{ labels:["CLEAR","FRAUD"], datasets:[{ data:[normalC, fraudC], backgroundColor:["#00ff41","#ff00ff"] }] }, options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ color:'#00f0ff', font:{ family:'Orbitron' } } } } } });
+    }
+
+    function showResult(data) {
+        document.getElementById("result").innerHTML = `<div class="prediction-card"><h3 style="color:${data.prediction === 1 ? '#ff00ff' : '#00ff41'}">${data.prediction_label}</h3><div class="result-grid"><div class="result-box"><h4>FRAUD PROBABILITY</h4><div class="progress-container"><div class="progress-bar" style="width:${data.fraud_probability_percent}%"></div></div><p>${data.fraud_probability_percent}%</p></div><div class="result-box"><h4>RISK LEVEL</h4><p>${data.risk_level}</p></div><div class="result-box"><h4>VERSION</h4><p>${data.model_version}</p></div></div><p class="timestamp">${data.timestamp}</p></div>`;
+        updateHistory(data);
+        updateCounters(data);
+    }
+
+    async function predictTransaction(payload) {
+        const response = await fetch('/predict', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+        const data = await response.json();
+        showResult(data);
+    }
+
+    async function testFraud() {
+        const payload = { "Time":406, "V1":-2.3122265423263, "V2":1.95199201064158, "V3":-1.60985073229769, "V4":3.9979055875468, "V5":-0.522187864667764, "V6":-1.42654531920595, "V7":-2.53738730624579, "V8":1.39165724829804, "V9":-2.77008927719433, "V10":-2.77227214465915, "V11":3.20203320709635, "V12":-2.89990738849473, "V13":-0.595221881324605, "V14":-4.28925378244217, "V15":0.389724120274487, "V16":-1.14074717980657, "V17":-2.83005567450437, "V18":-0.0168224681808257, "V19":0.416955705037907, "V20":0.126910559061474, "V21":0.517232370861764, "V22":-0.0350493686052974, "V23":-0.465211076182388, "V24":0.320198198514526, "V25":0.0445191674731724, "V26":0.177839798284401, "V27":0.261145002567677, "V28":-0.143275874698919, "Amount":0 };
+        predictTransaction(payload);
+    }
+
+    async function testNormal() {
+        const payload = { "Time":0, "V1":-1.3598071336738, "V2":-0.0727811733098497, "V3":2.53634673796914, "V4":1.37815522427443, "V5":-0.338320769942518, "V6":0.462387777762292, "V7":0.239598554061257, "V8":0.0986979012610507, "V9":0.363786969611213, "V10":0.0907941719789316, "V11":-0.551599533260813, "V12":-0.617800855762348, "V13":-0.991389847235408, "V14":-0.311169353699879, "V15":1.46817697209427, "V16":-0.470400525259478, "V17":0.207971241929242, "V18":0.0257905801985591, "V19":0.403992960255733, "V20":0.251412098239705, "V21":-0.018306777944153, "V22":0.277837575558899, "V23":-0.110473910188767, "V24":0.0669280749146731, "V25":0.128539358273528, "V26":-0.189114843888824, "V27":0.133558376740387, "V28":-0.0210530534538215, "Amount":149.62 };
+        predictTransaction(payload);
+    }
+
+    async function uploadCSV() {
+        const fileInput = document.getElementById("csvFile");
+        if(!fileInput.files.length) { alert("SELECT CSV FILE"); return; }
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+        try {
+            const response = await fetch("/predict-csv", { method:"POST", body:formData });
+            const data = await response.json();
+            document.getElementById("totalPredictions").innerText = data.total_transactions;
+            document.getElementById("fraudCount").innerText = data.fraud_transactions;
+            document.getElementById("normalCount").innerText = data.normal_transactions;
+            document.getElementById("analysisTime").innerHTML = "⟁ LAST SCAN: " + new Date().toLocaleString();
+            updateChart(data.fraud_transactions, data.normal_transactions);
+            let riskText = "🟢 LOW";
+            if(data.fraud_percentage >= 5) riskText = "🔴 CRITICAL";
+            else if(data.fraud_percentage >= 1) riskText = "🟡 ELEVATED";
+            document.getElementById("riskLevel").innerHTML = riskText;
+            let tbody = document.querySelector("#historyTable tbody");
+            let row = `<tr><td>${new Date().toLocaleString()}</td><td>${data.total_transactions}</td><td>${data.fraud_transactions}</td><td>${data.fraud_percentage}%</td></tr>`;
+            tbody.innerHTML = row + tbody.innerHTML;
+            if(data.top_alerts){
+                let alertsHTML = "";
+                data.top_alerts.forEach(alert => { alertsHTML += `<div class="alert-box"><h4>⚠️ FRAUD ALERT #${alert.transaction_id}</h4><p>RISK: <span class="critical">${alert.risk}</span></p><p>PROBABILITY: ${alert.probability.toFixed(2)}%</p></div>`; });
+                document.getElementById("alerts").innerHTML = alertsHTML;
+            } else { document.getElementById("alerts").innerHTML = "<div>⟁ NO THREATS DETECTED</div>"; }
+            document.getElementById("result").innerHTML = `<div class="prediction-card"><h3 style="color:#00f0ff">BULK SCAN COMPLETE</h3><div class="result-grid"><div class="result-box"><h4>TOTAL SCANNED</h4><p>${data.total_transactions}</p></div><div class="result-box"><h4>FRAUD DETECTED</h4><p>${data.fraud_transactions}</p></div><div class="result-box"><h4>THREAT RATIO</h4><p>${data.fraud_percentage}%</p></div></div></div>`;
+            fraudCount = data.fraud_transactions;
+            normalCount = data.normal_transactions;
+            document.getElementById("fraudCount").innerText = fraudCount;
+            document.getElementById("normalCount").innerText = normalCount;
+            document.getElementById("totalPredictions").innerText = data.total_transactions;
+        } catch(error) { console.error(error); alert("SCAN FAILED"); }
+    }
+
+    window.onload = () => {
+        const ctx = document.getElementById("fraudChart");
+        if(fraudChart) fraudChart.destroy();
+        fraudChart = new Chart(ctx, { type:"pie", data:{ labels:["CLEAR","FRAUD"], datasets:[{ data:[0,0], backgroundColor:["#00ff41","#ff00ff"] }] }, options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ color:'#00f0ff', font:{ family:'Orbitron' } } } } } });
+    };
+</script>
+</body>
+</html>
