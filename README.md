@@ -1,10 +1,29 @@
 # 💳 Credit Card Fraud Detection Dashboard
 
+![Python](https://img.shields.io/badge/Python-3.13-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Live-green)
+![Machine%20Learning](https://img.shields.io/badge/Machine%20Learning-Random%20Forest-orange)
+![Deployment](https://img.shields.io/badge/Deployment-Render-purple)
+
 ## 🚀 Overview
 
 An AI-powered Credit Card Fraud Detection Dashboard built using **FastAPI**, **Machine Learning**, and **Interactive Analytics**.
 
-This system detects fraudulent credit card transactions in real time and supports bulk CSV analysis with detailed fraud insights, risk assessment, and visual analytics.
+The system detects fraudulent credit card transactions in real-time and supports bulk CSV analysis with detailed fraud insights, risk assessment, and visualization dashboards.
+
+This project demonstrates the complete Machine Learning lifecycle including data preprocessing, handling imbalanced datasets, model training, deployment, and real-world API integration.
+
+---
+
+## 🌐 Live Demo
+
+### Dashboard
+
+https://credit-card-fraud-detection-dashboard-orpr.onrender.com/ui
+
+### API Documentation
+
+https://credit-card-fraud-detection-dashboard-orpr.onrender.com/docs
 
 ---
 
@@ -13,27 +32,28 @@ This system detects fraudulent credit card transactions in real time and support
 ### 🔍 Single Transaction Prediction
 
 * Predict whether a transaction is Fraudulent or Legitimate
-* Real-time probability scoring
-* Risk level classification (Low / Medium / High)
+* Real-time fraud probability scoring
+* Risk level classification
 
 ### 📂 CSV Batch Analysis
 
-* Upload CSV files containing thousands of transactions
-* Bulk fraud detection
-* Instant fraud summary
+* Upload CSV files for bulk fraud detection
+* Analyze thousands of transactions instantly
+* Generate fraud statistics
 
 ### 📊 Interactive Dashboard
 
-* Total Transactions Analyzed
-* Fraud Transactions Detected
+* Total Transactions
+* Fraud Transactions
+* Normal Transactions
 * Fraud Percentage
 * Risk Assessment
 * Analysis History
 
-### 📈 Visual Analytics
+### 📈 Analytics & Visualization
 
 * Pie Chart Visualization
-* Fraud vs Normal Distribution
+* Fraud Distribution Analysis
 * Fraud Alert Monitoring
 * Transaction Insights
 
@@ -42,7 +62,7 @@ This system detects fraudulent credit card transactions in real time and support
 * RESTful API Architecture
 * Swagger Documentation
 * High Performance Inference
-* Production Ready Deployment
+* Cloud Deployment Ready
 
 ---
 
@@ -50,19 +70,20 @@ This system detects fraudulent credit card transactions in real time and support
 
 ### Data Preprocessing
 
-* Missing Value Handling
+* Data Cleaning
 * Feature Scaling
 * Standardization
+* Feature Selection
 
-### Imbalanced Data Handling
+### Handling Imbalanced Data
 
-* SMOTE Oversampling
+* SMOTE (Synthetic Minority Oversampling Technique)
 
 ### Model Training
 
 * Random Forest Classifier
 
-### Evaluation Metrics
+### Model Evaluation
 
 * Accuracy
 * Precision
@@ -80,6 +101,7 @@ Credit-Card-Fraud-Detection-Dashboard/
 ├── Procfile
 ├── requirements.txt
 ├── README.md
+├── .gitignore
 │
 ├── models/
 │   ├── credit_fraud_model.pkl
@@ -110,6 +132,7 @@ Credit-Card-Fraud-Detection-Dashboard/
 * Pandas
 * NumPy
 * Imbalanced-Learn (SMOTE)
+* Joblib
 
 ### Frontend
 
@@ -124,28 +147,18 @@ Credit-Card-Fraud-Detection-Dashboard/
 
 ---
 
-## 📸 Dashboard Preview
-
-### Home Dashboard
-
-Add screenshot here
-
-### CSV Analysis
-
-Add screenshot here
-
-### Fraud Analytics
-
-Add screenshot here
-
----
-
 ## ⚙️ Installation
 
 ### Clone Repository
 
 ```bash
 git clone https://github.com/devsaichetan/Credit-Card-Fraud-Detection-Dashboard.git
+```
+
+### Navigate to Project
+
+```bash
+cd Credit-Card-Fraud-Detection-Dashboard
 ```
 
 ### Install Dependencies
@@ -170,38 +183,86 @@ http://127.0.0.1:8000/ui
 
 ## 📡 API Endpoints
 
-| Method | Endpoint     | Description           |
-| ------ | ------------ | --------------------- |
-| GET    | /            | Home                  |
-| GET    | /health      | Health Check          |
-| GET    | /model-info  | Model Information     |
-| POST   | /predict     | Single Prediction     |
-| POST   | /predict-csv | CSV Batch Prediction  |
-| GET    | /docs        | Swagger Documentation |
-| GET    | /ui          | Dashboard Interface   |
+| Method | Endpoint     | Description                   |
+| ------ | ------------ | ----------------------------- |
+| GET    | /            | Home Endpoint                 |
+| GET    | /health      | Health Check                  |
+| GET    | /model-info  | Model Information             |
+| POST   | /predict     | Single Transaction Prediction |
+| POST   | /predict-csv | CSV Batch Prediction          |
+| GET    | /metrics     | Model Metrics                 |
+| GET    | /docs        | Swagger Documentation         |
+| GET    | /ui          | Dashboard Interface           |
+
+---
+
+## 🚀 Deployment
+
+This application is publicly deployed using Render.
+
+### Deployment Stack
+
+* Render Cloud Platform
+* FastAPI Backend
+* Random Forest Machine Learning Model
+* Interactive Frontend Dashboard
 
 ---
 
 ## 🎯 Future Enhancements
 
-* Real-time Transaction Monitoring
-* Live Fraud Alerts
-* User Authentication
-* Advanced Analytics Dashboard
-* Email Notifications
-* Cloud Database Integration
+* User Authentication System
+* Advanced Fraud Risk Dashboard
+* Real-Time Transaction Monitoring
 * Explainable AI (XAI)
-* Deep Learning Models
+* Deep Learning Based Detection
+* Email & SMS Fraud Alerts
+* Cloud Database Integration
+* Multi-Model Fraud Detection Pipeline
+* Advanced Analytics Dashboard
 
 ---
 
 ## 👨‍💻 Developer
 
-**Sai Chetan**
+### Sai Chetan
 
-B.Tech CSE | Machine Learning Enthusiast | FastAPI Developer
+B.Tech Computer Science Engineering
+
+Machine Learning • Artificial Intelligence • FastAPI • Data Science
+
+Passionate about building AI-powered solutions that solve real-world problems through machine learning and intelligent analytics.
 
 ---
+
+## ⚠️ Usage Notes
+
+### CSV Upload Guidelines
+
+To ensure smooth performance on the public demo deployment:
+
+* Upload CSV files containing **50,000 rows or fewer**
+* Very large datasets may exceed the memory limits of the free cloud hosting environment
+* For best performance, use datasets between **1,000 and 10,000 rows**
+* The application is optimized for demonstration and educational purposes
+
+### Expected CSV Format
+
+The uploaded file must contain:
+
+* Time
+* V1 to V28
+* Amount
+
+The target column (`Class`) is optional for prediction but can be included for comparison and validation.
+
+### Demo Deployment Limitations
+
+This application is currently deployed on a free cloud instance with limited memory resources.
+
+For enterprise-scale datasets, a higher-capacity deployment environment is recommended.
+ 
+----
 
 ## ⭐ Support
 
@@ -215,4 +276,10 @@ If you found this project useful:
 
 ---
 
-### "Turning Transaction Data into Fraud Intelligence."
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+### 💡 Turning Transaction Data into Fraud Intelligence.
